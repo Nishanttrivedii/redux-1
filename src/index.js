@@ -7,7 +7,7 @@ import { createStore,combineReducers,applyMiddleware } from 'redux';
 import { accountReducer } from './reducers/accountReducer';
 import { bonusReducer } from './reducers/bonusReducer';
 import logger from 'redux-logger';
-
+import { Provider } from 'react-redux';
 import {thunk}  from 'redux-thunk';
 const store = createStore(
   combineReducers({
@@ -17,10 +17,13 @@ const store = createStore(
   applyMiddleware(logger, thunk)
 );
 const root = ReactDOM.createRoot(document.getElementById('root'));
+//now redux state is linked with react state
 root.render(
-  <React.StrictMode>
-      <App store={store} />
-  </React.StrictMode>
+
+    <Provider store={store}><App/></Provider>      
+    
+      
+
 );
 
 // If you want to start measuring performance in your app, pass a function

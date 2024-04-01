@@ -74,7 +74,9 @@ export const getAccUserRejected='account/getUser/rejected';
 
 //action creators
 export const getAccountUserFulfilled=(value)=>{
+  debugger
     return {type:getAccUserFulfilled,payload:value,pending:false}
+    debugger
   }
   export const getAccountUserPending=()=>{
     return {type:getAccUserPending}
@@ -105,8 +107,11 @@ export const getAccountUserFulfilled=(value)=>{
     return async(dispatch,getState)=>{
      try{
       dispatch(getAccountUserPending());
-      const { data } = await axios.get(`http://localhost:3000/accounts/${id}`);
+      const { data } = await axios.get(`http://localhost:8080/accounts/${id}`);
+  
       dispatch(getAccountUserFulfilled(data.amount))
+      console.log(data.amount);
+      debugger
      }
      catch(error){
       dispatch(getAccountUserRejected(error.message))
